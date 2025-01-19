@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image: url(Background2.png);
+            color: beige;
+            font-family: cursive;
+        }
+        .q1{
+           margin-left: 0%; 
+           font-size: 350%;
+           margin-top: 0%;
+        }
+        .q2{
+           margin-left: 10%; 
+           font-size: 350%;
+           margin-top: -3%;
+           margin-left: 15%;
+        }
+        .image-container>img{
+            width: 25%;
+            height: 25vh;
+            
+            
+        }
+        /* CSS (styles.css) */
+/* CSS (styles.css) */
+.image-container {
+    text-align: center;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-left: 0%;
+    
+}
+
+.timeout-image {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px;
+    opacity: 0; /* Initially make the image invisible */
+    transform: translateX(-100%); /* Start off-screen (to the left) */
+    transition: transform 1s ease, opacity 1s ease; /* Apply smooth slide-in effect */
+}
+
+/* When the 'visible' class is added, bring the image into the screen */
+.visible {
+    opacity: 1; /* Make the image visible */
+    transform: translateX(0); /* Move the image into its normal position */
+}
+#image1{
+    margin-left: -5%;
+}
+
+    </style>
+</head>
+<body>
+    
+    <p class="q1"> THE MORE YOU EAT...</p>
+    <P class="q2"> THE MORE WE GET...</P>
+    
+       <div class="image-container">
+        <img src="about.jpg" id="image1" class="timeout-image" alt="Image 1">
+        <img src="about1.webp" id="image2" class="timeout-image" alt="Image 2">
+        <img src="about 2.webp" id="image3" class="timeout-image" alt="Image 3">
+        <img src="about3.jpg" id="image4" class="timeout-image" alt="Image 4">
+        <img src="about4.jpg" id="image5" class="timeout-image" alt="Image 4">
+        <img src="about5.jpg" id="image6" class="timeout-image" alt="Image 5">
+    </div>
+    </div>
+    <script>
+// JavaScript (script.js)
+window.onload = function() {
+    // Get all images with the class 'timeout-image'
+    const images = document.querySelectorAll('.timeout-image');
+
+    images.forEach(function(image, index) {
+        // Stagger the timeout for each image with a delay based on its index
+        setTimeout(function() {
+            // Add the 'visible' class to fade in the image
+            image.classList.add('visible');
+        }, index * 1000);  // Delay increases by 1 second for each image
+    });
+};
+
+
+    </script>
+    
+</body>
+</html>

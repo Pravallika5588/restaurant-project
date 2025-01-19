@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400i,700">
+  <link rel="stylesheet" href="styles/index.processed.css">
+</head>
+<style>
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f5f5;
+  font-family: "Lato", sans-serif;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 10px 10px 40px 2px rgba(128, 128, 128, 0.4);
+  width: calc(34% - 20px); /* 3 cards per row */
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card-media {
+  background-position: center;
+  background-size: cover;
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+}
+
+.discount, .pro-discount, .delivery-time {
+  font-size: 12px;
+  position: absolute;
+  padding: 5px;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.discount {
+  background-color: #3582ec;
+  bottom: 21%;
+  left: 0;
+}
+
+.pro-discount {
+  background-color: #e83940;
+  bottom: 6%;
+  left: 0;
+}
+
+.delivery-time {
+  background-color: #f5f5f5;
+  color: #000;
+  bottom: 6%;
+  right: 5%;
+  padding: 5px;
+}
+
+.card-description {
+  padding: 15px;
+}
+
+.card-description .about-place {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.place-name {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.place-speciality {
+  font-size: 14px;
+  color: rgba(128, 128, 128, 0.97);
+}
+
+.rating {
+  font-size: 14px;
+  background-color: #0a6d0a;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  padding: 2px 10px;
+  border-radius: 4px;
+}
+
+.per-person {
+  font-size: 14px;
+  color: rgba(128, 128, 128, 0.97);
+}
+.btn{
+    margin: -150%;
+}
+
+</style>
+<body>
+    
+
+
+
+
+
+
+
+
+<CENTER>
+
+    <h1>ITS OUR MENU...</h1>
+</CENTER>
+
+
+
+        <div class="cards-container">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-media" style="background-image: url(img1.jpg);">
+                    <div class="discount">40% OFF<p>Up to &#x20b9;80 </p></div>
+                    <div class="pro-discount">PRO extra 15% OFF</div>
+                    <div class="delivery-time">39 mins</div>
+                    <div class="bookmark"></div>
+                </div>
+                <div class="card-description">
+                    <div class="about-place">
+                        <div class="place">
+                            <p class="place-name">Non veg-Biryani</p>
+                            <p class="place-speciality">Italian, Fast Food</p>
+                        </div>
+                        <div class="place-review">
+                            <p class="rating">4.6 &#x2605;</p>
+                            <p class="per-person"> &#x20b9; 200 per one</p>
+                            <a href="nonveg.html" class="btn">view more</a>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-media" style="background-image: url(img2.jpg);">
+                    <div class="discount">30% OFF<p>Up to &#x20b9;100 </p></div>
+                    <div class="pro-discount">PRO extra 10% OFF</div>
+                    <div class="delivery-time">45 mins</div>
+                    <div class="bookmark"></div>
+                </div>
+                <div class="card-description">
+                    <div class="about-place">
+                        <div class="place">
+                            <p class="place-name">veg-Biryani</p>
+                            <p class="place-speciality"> Fast Food</p>
+                        </div>
+                        <div class="place-review">
+                            <p class="rating">4.5 &#x2605;</p>
+                            <p class="per-person"> &#x20b9; 250 per one</p>
+                            <a href="veg.html" class="btn">view more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-media" style="background-image: url(img3.jpg);">
+                    <div class="discount">20% OFF<p>Up to &#x20b9;50 </p></div>
+                    <div class="pro-discount">PRO extra 5% OFF</div>
+                    <div class="delivery-time">30 mins</div>
+                    <div class="bookmark"></div>
+                </div>
+                <div class="card-description">
+                    <div class="about-place">
+                        <div class="place">
+                            <p class="place-name">sweets</p>
+                            <p class="place-speciality"> Fast Food</p>
+                        </div>
+                        <div class="place-review">
+                            <p class="rating">4.4 &#x2605;</p>
+                            <p class="per-person"> &#x20b9; 150 per one</p>
+                            <a href="sweets.html" class="btn">view more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="card-media" style="background-image: url(img4.jpg);">
+                    <div class="discount">50% OFF<p>Up to &#x20b9;150 </p></div>
+                    <div class="pro-discount">PRO extra 20% OFF</div>
+                    <div class="delivery-time">35 mins</div>
+                    <div class="bookmark"></div>
+                </div>
+                <div class="card-description">
+                    <div class="about-place">
+                        <div class="place">
+                            <p class="place-name">Shakes</p>
+                            <p class="place-speciality">Drinks</p>
+                        </div>
+                        <div class="place-review">
+                            <p class="rating">4.7 &#x2605;</p>
+                            <p class="per-person"> &#x20b9; 300 per one</p>
+                            <a href="shakes.html" class="btn">view more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 5 -->
+            <div class="card">
+                <div class="card-media" style="background-image: url(img5.jpg);">
+                    <div class="discount">15% OFF<p>Up to &#x20b9;60 </p></div>
+                    <div class="pro-discount">PRO extra 10% OFF</div>
+                    <div class="delivery-time">40 mins</div>
+                    <div class="bookmark"></div>
+                </div>
+                <div class="card-description">
+                    <div class="about-place">
+                        <div class="place">
+                            <p class="place-name">Starters</p>
+                            <p class="place-speciality">Fsat Foods</p>
+                        </div>
+                        <div class="place-review">
+                            <p class="rating">4.3 &#x2605;</p>
+                            <p class="per-person"> &#x20b9; 120 per one</p>
+                            <a href="staters.html" class="btn">view more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 6 -->
+            <div class="card">
+                <div class="card-media" style="background-image: url(img6.jpg);">
+                    <div class="discount">25% OFF<p>Up to &#x20b9;90 </p></div>
+                    <div class="pro-discount">PRO extra 12% OFF</div>
+                    <div class="delivery-time">50 mins</div>
+                    <div class="bookmark"></div>
+                </div>
+                <div class="card-description">
+                    <div class="about-place">
+                        <div class="place">
+                            <p class="place-name">Coffee</p>
+                            <p class="place-speciality">Drink</p>
+                        </div>
+                        <div class="place-review">
+                            <p class="rating">4.2 &#x2605;</p>
+                            <p class="per-person"> &#x20b9; 180 per one</p>
+                            <a href="coffee.html" class="btn">view more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 7 -->
+            <div class="card">
+                <div class="card-media" style="background-image: url(img7.jpg);">
+                    <div class="discount">10% OFF<p>Up to &#x20b9;40 </p></div>
+                    <div class="pro-discount">PRO extra 5% OFF</div>
+                    <div class="delivery-time">25 mins</div>
+                    <div class="bookmark"></div>
+                </div>
+                <div class="card-description">
+                    <div class="about-place">
+                        <div class="place">
+                            <p class="place-name">ICE CREAM</p>
+                            <p class="place-speciality">COOL</p>
+                        </div>
+                        <div class="place-review">
+                            <p class="rating">4.0 &#x2605;</p>
+                            <p class="per-person"> &#x20b9; 130 per one</p>
+                            <a href="icecream.html" class="btn">view more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 8 -->
+            <div class="card">
+                <div class="card-media" style="background-image: url(img8.jpg);">
+                    <div class="discount">5% OFF<p>Up to &#x20b9;20 </p></div>
+                    <div class="pro-discount">PRO extra 2% OFF</div>
+                    <div class="delivery-time">55 mins</div>
+                    <div class="bookmark"></div>
+                </div>
+                <div class="card-description">
+                    <div class="about-place">
+                        <div class="place">
+                            <p class="place-name">Cafe Coffee Day</p>
+                            <p class="place-speciality">Fast-food</p>
+                        </div>
+                        <div class="place-review">
+                            <p class="rating">3.9 &#x2605;</p>
+                            <p class="per-person"> &#x20b9; 100 per one</p>
+                            <a href="pizza.html" class="btn">view more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 9 -->
+            <div class="card">
+                <div class="card-media" style="background-image: url(img9.jpg);">
+                    <div class="discount">35% OFF<p>Up to &#x20b9;120 </p></div>
+                    <div class="pro-discount">PRO extra 18% OFF</div>
+                    <div class="delivery-time">60 mins</div>
+                    <div class="bookmark"></div>
+                </div>
+                <div class="card-description">
+                    <div class="about-place">
+                        <div class="place">
+                            <p class="place-name">Burger</p>
+                            <p class="place-speciality">Fast-food</p>
+                        </div>
+                        <div class="place-review">
+                            <p class="rating">4.2 &#x2605;</p>
+                            <p class="per-person"> &#x20b9; 150 per one</p>
+                            <a href="burger.html" class="btn">view more</a>
+                        </div>
+                  
+    
+</body>
+</html>

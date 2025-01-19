@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+      body {
+        background-color: #f4f4f9;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .cart-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+      }
+
+      .cart-item {
+        border: 1px solid #ddd;
+        padding: 20px;
+        width: 250px;
+        text-align: center;
+        background-color: white;
+        border-radius: 8px;
+      }
+
+      .cart-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .cart-item h3 {
+        font-size: 18px;
+        margin: 10px 0;
+      }
+
+      .cart-item p {
+        margin: 5px 0;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .cart-item .remove-btn {
+        background-color: #ff6347;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .cart-item .remove-btn:hover {
+        background-color: #ff4500;
+      }
+
+      .checkout-btn {
+        display: block;
+        margin: 30px auto;
+        padding: 12px 30px;
+        font-size: 18px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .checkout-btn:hover {
+        background-color: #45a049;
+      }
+    </style>
+</head>
+<body>
+
+<h1>Your Cart</h1>
+<div class="cart-container" id="cart-container">
+    <!-- Cart items will be displayed here -->
+</div>
+
+<!-- Checkout Button -->
+<button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+
+<script>
+    // Function to load cart from localStorage and display it
+    function loadCart() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // If there are no items in the cart, show a message
+        if (cart.length === 0) {
+            document.getElementById("cart-container").innerHTML = "<p>Your cart is empty!</p>";
+            return;
+        }
+
+        // Loop through cart items and create HTML elements to display them
+        const cartContainer = document.getElementById("cart-container");
+        cartContainer.innerHTML = ""; // Clear previous items
+
+        cart.forEach((item, index) => {
+            const cartItemDiv = document.createElement("div");
+            cartItemDiv.classList.add("cart-item");
+
+            cartItemDiv.innerHTML = `
+                <img src="${item.image}" alt="${item.label}">
+                <h3>${item.label}</h3>
+                <p>Calories: ${item.calories.toFixed(2)}</p>
+                <p>Source: ${item.source}</p>
+                <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+            `;
+
+            cartContainer.appendChild(cartItemDiv);
+        });
+    }
+
+    // Function to remove item from cart
+    function removeFromCart(index) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.splice(index, 1); // Remove the item at the specified index
+        localStorage.setItem("cart", JSON.stringify(cart)); // Save the updated cart
+        loadCart(); // Reload the cart
+    }
+
+    // Checkout function (can be expanded to handle actual checkout logic)
+    function checkout() {
+    // Optional: You can add a confirmation message before redirecting
+    const userConfirmed = confirm("Do you want to proceed to checkout?");
+    
+    if (userConfirmed) {
+        alert("Proceeding to checkout...");
+        
+        // Redirect to the payment page (change the URL to your actual payment page)
+        window.location.href = "payment.html";
+    } else {
+        alert("Checkout canceled.");
+    }
+}
+
+    // Load cart when the page loads
+    window.onload = loadCart;
+</script>
+
+</body>
+</html>

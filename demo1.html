@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+      body{
+        background-image: url(background3.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      /* Style the input field */
+      #inp {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 300px;
+        margin-left: 35%;
+      }
+
+      /* Style the search button */
+      #inp1 {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      /* Style the container for the search results */
+      .container {
+        display: flex;
+        flex-wrap: wrap; /* Use flexbox for wrapping items */
+        justify-content: space-between; /* Space items evenly */
+      }
+
+      /* Style the individual search result items */
+      .container div {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px; /* Add margin for spacing between items */
+        width: calc(33% - 20px); /* Calculate width for three columns */
+        box-sizing: border-box; /* Include padding and border in width calculation */
+        text-align: center;
+      }
+
+      /* Style the image of the recipe */
+      .container div img {
+        width: 100%; /* Make image responsive */
+        height: 30vh;
+        margin-bottom: 5px;
+      }
+
+      /* Style the recipe title */
+      .container div h3 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      /* Style the recipe calories and source */
+      .container div p {
+        margin: 0;
+        font-size: 14px;
+        color: #aaa;
+      }
+
+      /* Style the 'Add to Cart' button */
+      .add-to-cart-btn {
+        background-color: #ff6347; /* Tomato color */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 10px;
+      }
+      h3{
+        color: #ddd;
+      }
+    </style>
+</head>
+<body>
+
+<div class="demo">
+    <input type="text" id="inp" placeholder="search...">
+    <button onclick="apidata()" id="inp1"> <i class="fas fa-search"></i> </button><br>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+</div>
+
+<script>
+  // Initialize an array to store the items added to the cart
+  let cart = [];
+
+  async function apidata() {
+    const inp = document.getElementById("inp").value;
+    let res = await fetch(`https://api.edamam.com/search?q=${inp}&app_id=a52b4d43&app_key=e0e5c667605f5e91d8275c973531b80a`);
+    let data = await res.json();
+    console.log(data.hits);
+
+    document.querySelector(".container").innerHTML = "";
+
+    let newdata = data.hits.map((val) => {
+      let parent = document.querySelector(".container");
+      let mainchild = document.createElement("div");
+      let childa = document.createElement("h3");
+      let childb = document.createElement("p");
+      let childc = document.createElement("img");
+      let childd = document.createElement("p");
+      let addToCartBtn = document.createElement("button");
+
+      // Populate the elements with data
+      childa.innerText = val.recipe.label;
+      childb.innerText = `Price: ${val.recipe.calories.toFixed(2)}`;
+      childc.src = val.recipe.image;
+      childd.innerText = `Source: ${val.recipe.source}`;
+
+     // Style and create the 'Add to Cart' button
+addToCartBtn.classList.add("add-to-cart-btn");
+addToCartBtn.innerText = "Add to Cart";
+
+addToCartBtn.onclick = function () {
+    // Add item to cart
+    addToCart(val.recipe);
+
+    // Move to another page (e.g., redirect to a new page after adding to cart)
+    window.location.href = "cart.html";  // Change this to your desired page
+};
+
+// Function to add item to the cart (for example, using localStorage)
+function addToCart(recipe) {
+    // Retrieve the current cart (if exists) or create an empty one
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Add the recipe to the cart
+    cart.push(recipe);
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    console.log("Item added to cart:", recipe);
+}
+
+
+      // Append all elements
+      mainchild.append(childa, childb, childc, childd, addToCartBtn);
+      parent.appendChild(mainchild);
+    });
+  }
+
+  function addToCart(recipe) {
+    // Add recipe to cart
+    cart.push(recipe);
+    alert(`${recipe.label} has been added to your cart.`);
+    console.log(cart); // For testing
+  }
+</script>
+
+</body>
+</html>

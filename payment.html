@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .cart-summary {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .cart-item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 70%;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .cart-item div {
+            flex: 1;
+            text-align: left;
+        }
+
+        .checkout-form {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .checkout-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .checkout-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .checkout-btn:hover {
+            background-color: #45a049;
+        }
+
+        .cancel-btn {
+            background-color: #ff6347;
+            color: white;
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .cancel-btn:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Checkout</h1>
+
+<!-- Cart Summary -->
+<div class="cart-summary" id="cart-summary">
+    <!-- Cart items will be dynamically populated here -->
+</div>
+
+<!-- Checkout Form -->
+<div class="checkout-form">
+    <h2>Payment Details</h2>
+    <form id="payment-form">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="text" id="address" placeholder="Shipping Address" required>
+        <input type="number" id="card-number" placeholder="Card Number" required>
+        <input type="text" id="expiry-date" placeholder="Expiry Date (MM/YY)" required>
+        <input type="text" id="cvv" placeholder="CVV" required>
+        <button type="submit" class="checkout-btn">Complete Payment</button>
+    </form>
+    <button class="cancel-btn" onclick="cancelOrder()">Cancel</button>
+</div>
+
+<script>
+    // Function to display cart items from localStorage
+    function loadCart() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        
+        if (cart.length === 0) {
+            document.getElementById("cart-summary").innerHTML = "<p>Your cart is empty. Please add items to the cart before proceeding.</p>";
+            return;
+        }
+
+        const cartSummary = document.getElementById("cart-summary");
+        let total = 0;
+
+        cart.forEach(item => {
+            const cartItemDiv = document.createElement("div");
+            cartItemDiv.classList.add("cart-item");
+            cartItemDiv.innerHTML = `
+                <img src="${item.image}" alt="${item.label}">
+                <div>
+                    <h3>${item.label}</h3>
+                    <p>Price: $${(item.calories / 100).toFixed(2)}</p>
+                    <p>Calories: ${item.calories.toFixed(2)}</p>
+                </div>
+            `;
+            cartSummary.appendChild(cartItemDiv);
+
+            total += (item.calories / 100); // Use calories as a proxy for price, for example
+        });
+
+        // Display the total price
+        const totalDiv = document.createElement("div");
+        totalDiv.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
+        cartSummary.appendChild(totalDiv);
+    }
+
+    // Function to handle the checkout form submission
+    document.getElementById("payment-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Here, you would typically handle the payment integration (e.g., Stripe, PayPal)
+        // For now, just log the data to the console
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const address = document.getElementById("address").value;
+        const cardNumber = document.getElementById("card-number").value;
+        const expiryDate = document.getElementById("expiry-date").value;
+        const cvv = document.getElementById("cvv").value;
+
+        console.log("Payment details:", { name, email, address, cardNumber, expiryDate, cvv });
+
+        // Display a success message (simulated for now)
+        alert("Payment successful! Thank you for your purchase.");
+        
+        // Clear the cart after payment
+        localStorage.removeItem("cart");
+
+        // Redirect to a confirmation or thank you page (optional)
+        window.location.href = "thankyou.html"; // Or any confirmation page
+    });
+
+    // Function to cancel the order
+    function cancelOrder() {
+        alert("Order has been canceled.");
+        window.location.href = "cart.html"; // Redirect to the cart page
+    }
+
+    // Load the cart when the page loads
+    window.onload = loadCart;
+</script>
+
+</body>
+</html>
